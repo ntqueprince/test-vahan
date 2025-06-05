@@ -10,18 +10,34 @@
     body {
       font-family: 'Poppins', sans-serif;
       padding: 20px;
-      /* Add significant top padding to account for external GitHub header */
-      padding-top: 70px; /* Increased padding to give more space */
+      /* Add significant top padding to account for external GitHub header and our fixed app header */
+      padding-top: 120px; /* Increased padding to give more space for both fixed headers */
       background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
       text-align: center;
       margin: 0;
       min-height: 100vh;
-      position: relative; /* Needed for z-index context if using absolute positioning within */
+      position: relative;
     }
+    .app-main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #1a237e; /* Dark blue background for strong visibility */
+      color: white;
+      padding: 10px 0;
+      font-size: 2.2em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      z-index: 1002; /* Highest z-index to ensure it's always on top */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-transform: uppercase;
+    }
+
     h2, h3 {
       color: #1a237e;
       font-weight: 600;
-      margin-top: 20px; /* Ensure main header has enough top margin */
+      margin-top: 20px;
     }
     h2 {
       font-size: 2em;
@@ -36,7 +52,6 @@
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      /* Remove fixed margin-top as body padding now handles overall offset */
     }
     input[type="file"], input[type="text"] {
       padding: 12px;
@@ -54,32 +69,30 @@
       box-shadow: 0 0 8px rgba(63, 81, 181, 0.3);
       outline: none;
     }
-    /* General button styling - fallback for specific buttons if not overridden */
     button {
-      padding: 15px 25px; /* Increased padding for bigger buttons */
+      padding: 15px 25px;
       margin: 8px;
-      font-size: 18px; /* Increased font size for bigger buttons */
+      font-size: 18px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      color: white; /* Default text color for buttons */
+      color: white;
     }
 
-    /* Specific style for the Upload button */
     .upload-main-btn {
-      background-color: #64b5f6; /* Light blue color for Upload button */
-      padding: 18px 30px; /* Even bigger padding for more emphasis */
-      font-size: 20px; /* Even bigger font size */
-      font-weight: 600; /* Bolder text */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-      border: 2px solid #2196f3; /* Subtle border for definition */
+      background-color: #64b5f6;
+      padding: 18px 30px;
+      font-size: 20px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: 2px solid #2196f3;
     }
     .upload-main-btn:hover {
-      background-color: #42a5f5; /* Darker shade for hover */
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
-      transform: translateY(-3px) scale(1.02); /* Slight lift and scale on hover */
+      background-color: #42a5f5;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px) scale(1.02);
     }
 
     .progress-container {
@@ -378,44 +391,44 @@
     /* Fixed Buttons on Main Page */
     .fixed-buttons-container {
         position: fixed;
-        top: 10px; /* Adjusted to be higher, closer to the top of the viewport */
+        top: 60px; /* Positioned below the new app header */
         left: 0;
-        right: 0; /* Ensure it spans full width */
+        right: 0;
         width: 100%;
         display: flex;
-        justify-content: center; /* Center buttons */
-        gap: 20px; /* Space between buttons */
-        z-index: 999; /* Lower than modal z-index but above normal content */
-        padding: 5px 0; /* Some padding for visual comfort */
+        justify-content: center;
+        gap: 20px;
+        z-index: 1000; /* Between app header and modals */
+        padding: 5px 0;
         background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Match body background */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for separation from GitHub header */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .csat-btn,
     .vi-claim-btn,
     .endorsement-btn,
     .manual-vi-btn {
-      background-color: #1b5e20; /* Dark green color */
+      background-color: #1b5e20;
       color: white;
       border: none;
-      padding: 15px 25px; /* Increased padding for bigger buttons */
-      font-size: 18px; /* Increased font size for bigger buttons */
+      padding: 15px 25px;
+      font-size: 18px;
       border-radius: 8px;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      white-space: nowrap; /* Prevent text wrapping */
+      white-space: nowrap;
     }
     .csat-btn:hover,
     .vi-claim-btn:hover,
     .endorsement-btn:hover,
     .manual-vi-btn:hover {
-      background-color: #2e7d32; /* Darker green on hover */
+      background-color: #2e7d32;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       transform: translateY(-2px);
     }
 
-    /* ENDORSEMENT Full-Page Widget Styles */
+    /* Full-Page Widget Styles (for all modes) */
     .endorsement-page, .vi-claim-page, .manual-vi-page, .csat-modal {
       display: none;
       position: fixed;
@@ -424,19 +437,19 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-      z-index: 1000;
+      z-index: 1003; /* Highest z-index for full-page modals */
       padding: 0;
       margin: 0;
       box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
-      overflow-y: auto; /* Allow scrolling for content */
-      justify-content: center; /* Center content for modals */
-      align-items: center; /* Center content for modals */
+      overflow-y: auto;
+      justify-content: center;
+      align-items: center;
     }
     .endorsement-container, .vi-claim-container, .manual-vi-container, .csat-modal-content {
       width: 100%;
-      max-width: 800px; /* Increased max-width for better table viewing */
-      margin: 20px auto; /* Added margin-top for spacing */
+      max-width: 800px;
+      margin: 20px auto;
       background: #ffffff;
       padding: 20px;
       border-radius: 12px;
@@ -484,15 +497,15 @@
       border: 2px solid #b0bec5;
       border-radius: 8px;
       font-size: 0.95em;
-      font-family: Arial, Helvetica, sans-serif; /* Changed to fix BAJAJ rendering */
+      font-family: Arial, Helvetica, sans-serif;
       background: #fafafa;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      height: 40px; /* Fixed height to prevent extra space */
-      appearance: none; /* Remove default browser styling */
+      height: 40px;
+      appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
+      background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
       background-repeat: no-repeat;
       background-position: right 10px center;
     }
@@ -598,13 +611,13 @@
         word-break: break-words !important;
     }
     .table-row:nth-child(odd) {
-        background-color: #e0f7fa; /* Light blue for odd rows */
+        background-color: #e0f7fa;
     }
     .table-row:nth-child(even) {
-        background-color: #fce4ec; /* Light pink for even rows */
+        background-color: #fce4ec;
     }
     .table-row:hover {
-        background-color: #fff9c4 !important; /* Bright yellow on hover */
+        background-color: #fff9c4 !important;
     }
 
     .horizontal-scroll-buttons {
@@ -630,19 +643,22 @@
       transform: translateY(-2px);
     }
 
-    /* New CSS for hiding main content when modal is open */
-    body.modal-open > #mainHeader,
+    /* Hide main content when a modal/full-page section is open */
+    body.modal-open > .app-main-header,
+    body.modal-open > .fixed-buttons-container,
     body.modal-open > .upload-section,
     body.modal-open > h3,
-    body.modal-open > #gallery,
-    body.modal-open > .fixed-buttons-container {
+    body.modal-open > #gallery {
       display: none !important;
     }
 
     @media (max-width: 600px) {
-      /* Adjust body padding for smaller screens if needed, otherwise inherit from desktop */
       body {
-        padding-top: 50px; /* Slightly less padding for smaller screens */
+        padding-top: 50px; /* Adjust padding for mobile view to account for fixed app header */
+      }
+      .app-main-header {
+        font-size: 1.5em; /* Smaller font size for mobile header */
+        padding: 8px 0;
       }
       input[type="file"], input[type="text"] {
         width: 90%;
@@ -662,12 +678,11 @@
       h2, h3 {
         font-size: 1.2em;
       }
-      /* Hide fixed buttons on mobile by default */
-      .fixed-buttons-container {
+      /* Hide fixed buttons container on mobile for main page view */
+      body:not(.modal-open) .fixed-buttons-container {
         display: none !important;
       }
-      /* Ensure main content is visible on mobile when no modal is open */
-      body:not(.modal-open) #mainHeader,
+      /* Show main upload section by default on mobile when no modal is open */
       body:not(.modal-open) .upload-section,
       body:not(.modal-open) h3,
       body:not(.modal-open) #gallery {
@@ -678,7 +693,6 @@
         width: 80%;
         padding: 15px;
       }
-      /* Individual button styling for mobile within modal if needed */
       .csat-modal-content .close-btn,
       .csat-modal-content .calculate-btn {
           padding: 8px 15px;
@@ -695,7 +709,7 @@
       }
       .PB_DROPDOWN {
         font-size: 0.9em;
-        height: 36px; /* Adjusted for mobile */
+        height: 36px;
       }
       .output {
         font-size: 0.95em;
@@ -707,6 +721,11 @@
   </style>
 </head>
 <body>
+  <!-- Main Application Header -->
+  <div class="app-main-header">
+    TEST VAHAN
+  </div>
+
   <div class="fixed-buttons-container">
     <!-- CSAT Calculator Button -->
     <button class="csat-btn" onclick="openCSATModal()">CSAT Calculator</button>
@@ -753,7 +772,7 @@
   </div>
 </div>
 
-  <h2 id="mainHeader">Test Vahan</h2>
+  <!-- Removed h2#mainHeader as it's replaced by app-main-header -->
   <div class="upload-section">
     <input type="file" id="fileUpload" accept="image/*">
     <input type="text" id="tagInput" placeholder="Enter tag (e.g., Shivang)">
@@ -1201,7 +1220,6 @@
     // CSAT Calculator Functions
     window.openCSATModal = function() {
       document.getElementById('csatModal').style.display = 'flex';
-      // Add active class to modal content for transition
       setTimeout(() => {
         document.querySelector('#csatModal .csat-modal-content').classList.add('active');
       }, 10);
@@ -1211,10 +1229,10 @@
 
     window.closeCSATModal = function() {
       document.querySelector('#csatModal .csat-modal-content').classList.remove('active');
-      setTimeout(() => { // Delay display:none to allow transition to complete
+      setTimeout(() => {
         document.getElementById('csatModal').style.display = 'none';
         document.body.classList.remove('modal-open');
-      }, 300); // Match this duration with your CSS transition duration
+      }, 300);
       
       document.getElementById('goodCount').value = '0';
       document.getElementById('badCount').value = '0';
@@ -1277,7 +1295,6 @@
       }
     };
 
-    // Close CSAT Modal on Outside Click
     document.getElementById('csatModal').addEventListener('click', function(event) {
       if (event.target === this) {
         closeCSATModal();
@@ -1295,13 +1312,12 @@
 
     window.closeEndorsementPage = function() {
       document.querySelector('.endorsement-container').classList.remove('active');
-      setTimeout(() => { // Delay display:none to allow transition to complete
+      setTimeout(() => {
         document.getElementById('endorsementPage').style.display = 'none';
         document.body.classList.remove('modal-open');
-      }, 300); // Match this duration with your CSS transition duration
+      }, 300);
     };
 
-    // Close ENDORSEMENT Page on Outside Click
     document.getElementById('endorsementPage').addEventListener('click', function(event) {
       if (event.target === this) {
         closeEndorsementPage();
@@ -1314,19 +1330,18 @@
       setTimeout(() => {
         document.querySelector('.vi-claim-container').classList.add('active');
       }, 10);
-      populateTable(insuranceData); // Ensure table is populated when opening
+      populateTable(insuranceData);
       document.body.classList.add('modal-open');
     };
 
     window.closeVIClaimPage = function() {
       document.querySelector('.vi-claim-container').classList.remove('active');
-      setTimeout(() => { // Delay display:none to allow transition to complete
+      setTimeout(() => {
         document.getElementById('viClaimPage').style.display = 'none';
         document.body.classList.remove('modal-open');
-      }, 300); // Match this duration with your CSS transition duration
+      }, 300);
     };
 
-    // Close VI & Claim Count Page on Outside Click
     document.getElementById('viClaimPage').addEventListener('click', function(event) {
       if (event.target === this) {
         closeVIClaimPage();
@@ -1344,13 +1359,12 @@
 
     window.closeManualVIPage = function() {
       document.querySelector('.manual-vi-container').classList.remove('active');
-      setTimeout(() => { // Delay display:none to allow transition to complete
+      setTimeout(() => {
         document.getElementById('manualVIPage').style.display = 'none';
         document.body.classList.remove('modal-open');
-      }, 300); // Match this duration with your CSS transition duration
+      }, 300);
     };
 
-    // Close MANUAL-VI Page on Outside Click
     document.getElementById('manualVIPage').addEventListener('click', function(event) {
       if (event.target === this) {
         closeManualVIPage();
@@ -1362,10 +1376,8 @@
     const requirementDropdown = document.querySelector('.endorsement-page #requirement');
     const outputBox = document.querySelector('.endorsement-page #output');
 
-    // Empty array for you to manually add JSON data
     const data = [];
 
-    // Populate insurer dropdown
     try {
       const insurers = [...new Set(data.map(d => d["Insurer"]))].sort();
       insurers.forEach(ins => {
@@ -1375,7 +1387,6 @@
       });
     } catch (error) {
       console.error("Error populating insurers:", error);
-      // Use a message box instead of alert
       const modal = document.createElement('div');
       modal.innerHTML = `
         <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
@@ -1388,7 +1399,6 @@
       document.body.appendChild(modal);
     }
 
-    // Handle insurer selection
     insurerDropdown.addEventListener("change", () => {
       requirementDropdown.innerHTML = "<option disabled selected>Select Requirement</option>";
       outputBox.style.display = "none";
@@ -1406,7 +1416,6 @@
       requirementDropdown.disabled = false;
     });
 
-    // Handle requirement selection
     requirementDropdown.addEventListener("change", () => {
       const ins = insurerDropdown.value;
       const req = requirementDropdown.value;
@@ -1433,7 +1442,6 @@
       }
     });
 
-    // Data and functions for VI & Claim Count section
     const insuranceData = [
             {
                 "insurer_name": "National",
@@ -1748,8 +1756,8 @@
 
     function sortTable(column, order) {
         const sortedData = [...insuranceData].sort((a, b) => {
-            const aValue = String(a[column]).toLowerCase(); // Ensure values are strings for comparison
-            const bValue = String(b[column]).toLowerCase(); // Ensure values are strings for comparison
+            const aValue = String(a[column]).toLowerCase();
+            const bValue = String(b[column]).toLowerCase();
             if (order === 'asc') {
                 return aValue > bValue ? 1 : -1;
             } else {
@@ -1784,10 +1792,9 @@
         populateTable(filteredData);
     });
 
-    // Function to scroll the table horizontally
     window.scrollTableHorizontally = function(direction) {
       const tableWrapper = document.getElementById('insuranceTableWrapper');
-      const scrollAmount = 200; // Adjust scroll amount as needed
+      const scrollAmount = 200;
       if (direction === 'left') {
         tableWrapper.scrollLeft -= scrollAmount;
       } else {
